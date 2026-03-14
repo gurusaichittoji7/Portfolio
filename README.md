@@ -21,5 +21,5 @@ https://gurusaichittoji7.github.io/Ai-Powered-Portfolio/
 
 ## Contact
 - Email: gurusaic3x@gmail.com
-- LinkedIn: linkedin.com/in/gurusai-chittoji-73a5a822a
+- LinkedIn: https://www.linkedin.com/in/gurusai-chittoji-73a5a822a/
 - GitHub: github.com/gurusaichittoji7
