@@ -283,7 +283,7 @@
       font-size: 13px; color: var(--muted);
       line-height: 1.75; margin-bottom: 18px; flex: 1;
     }
-    .proj-stack { display: flex; flex-wrap: wrap; gap: 6px; }
+    .proj-stack { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
     .proj-tag {
       font-size: 11px; font-weight: 500;
       color: var(--orange2);
@@ -292,6 +292,25 @@
       border-radius: 999px;
       padding: 3px 10px;
     }
+    /* Project links row */
+    .proj-links { display: flex; gap: 10px; margin-top: auto; }
+    .proj-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12px; font-weight: 600;
+      text-decoration: none;
+      padding: 6px 14px; border-radius: 999px;
+      transition: all 0.2s;
+    }
+    .proj-link.gh {
+      color: var(--muted);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+    .proj-link.gh:hover { color: var(--text); border-color: rgba(255,255,255,0.28); }
+    .proj-link.demo {
+      color: #fff;
+      background: var(--orange);
+    }
+    .proj-link.demo:hover { background: var(--orange2); box-shadow: 0 0 18px rgba(232,98,42,0.4); }
 
     /* ── CONTACT ── */
     #contact { text-align: center; }
@@ -513,12 +532,6 @@
 
   <div class="photo-col">
     <div class="photo-ring">
-      <!--
-        TO ADD YOUR PHOTO:
-        1. Put your image (e.g. photo.jpg) in the same folder as this file
-        2. Replace the div.photo-placeholder below with:
-           <img src="photo.jpg" alt="Gurusai Chittoji"/>
-      -->
       <img src="Photo.png" alt="Gurusai Chittoji"/>
         <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
           <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
@@ -678,6 +691,57 @@
           <span class="proj-tag">Python</span>
           <span class="proj-tag">Data Analysis</span>
           <span class="proj-tag">Modeling</span>
+        </div>
+      </div>
+
+      <!-- ── NEW: LOOKSY ── -->
+      <div class="proj-card fade">
+        <div class="proj-num">Project 04</div>
+        <div class="proj-name">Looksy</div>
+        <div class="proj-desc">A LangChain-powered AI search agent that searches the live web using Tavily API and summarizes results with OpenAI GPT-3.5. Uses the ReAct pattern — the agent autonomously decides what to search, retrieves results, and returns a smart, up-to-date answer. Deployed end-to-end with Flask on Render.</div>
+        <div class="proj-stack">
+          <span class="proj-tag">LangChain</span>
+          <span class="proj-tag">OpenAI GPT-3.5</span>
+          <span class="proj-tag">Tavily API</span>
+          <span class="proj-tag">Flask</span>
+          <span class="proj-tag">Render</span>
+          <span class="proj-tag">Python</span>
+        </div>
+        <div class="proj-links">
+          <a class="proj-link gh" href="https://github.com/gurusaichittoji7/Looksy" target="_blank">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            GitHub
+          </a>
+          <a class="proj-link demo" href="https://looksy-ogu9.onrender.com/" target="_blank">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Live Demo
+          </a>
+        </div>
+      </div>
+
+      <!-- ── NEW: NOVA ── -->
+      <div class="proj-card fade">
+        <div class="proj-num">Project 05</div>
+        <div class="proj-name">Nova</div>
+        <div class="proj-desc">A RAG-powered document Q&amp;A app — upload any PDF or Word file, ask questions in plain English, and get accurate answers grounded in your document. Built with LangChain, FAISS vector embeddings, and OpenAI GPT-3.5. Deployed serverlessly on AWS Lambda with S3 for document storage.</div>
+        <div class="proj-stack">
+          <span class="proj-tag">LangChain</span>
+          <span class="proj-tag">RAG</span>
+          <span class="proj-tag">FAISS</span>
+          <span class="proj-tag">OpenAI GPT-3.5</span>
+          <span class="proj-tag">AWS Lambda</span>
+          <span class="proj-tag">AWS S3</span>
+          <span class="proj-tag">Flask</span>
+        </div>
+        <div class="proj-links">
+          <a class="proj-link gh" href="https://github.com/gurusaichittoji7/Nova" target="_blank">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            GitHub
+          </a>
+          <a class="proj-link demo" href="https://xryhe591d7.execute-api.us-east-1.amazonaws.com/dev" target="_blank">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Live Demo
+          </a>
         </div>
       </div>
 
@@ -863,12 +927,14 @@ EXPERIENCE:
 
 EDUCATION: MS Computer Science, University of Bridgeport CT (Sep 2023–May 2025), GPA 3.4/4.0
 
-SKILLS: Python, Java, JS, TypeScript, SQL, Flask, FastAPI, PyTorch, TensorFlow, Scikit-learn, JAX, Hugging Face, React.js, Tailwind, GraphQL, LLM Fine-Tuning, RAG, LangChain, FAISS, Pinecone, AWS (EC2/S3/RDS/Lambda), Docker, CI/CD, MongoDB, PostgreSQL
+SKILLS: Python, Java, JS, TypeScript, SQL, Flask, FastAPI, PyTorch, TensorFlow, Scikit-learn, JAX, Hugging Face, React.js, Tailwind, GraphQL, LLM Fine-Tuning, RAG, LangChain, FAISS, Pinecone, Tavily API, AWS (EC2/S3/RDS/Lambda), Docker, CI/CD, MongoDB, PostgreSQL
 
 PROJECTS:
 1. Employee Attrition Prediction — scikit-learn, 87% accuracy, 0.82 F1, Flask API, -60% manual HR work
 2. Full-Stack E-Commerce — Spring Boot, React, PostgreSQL, AWS, JWT auth, Stripe/PayPal, 99% uptime, 35% faster FE
 3. EV Modeling & Analysis — energy efficiency, emissions reduction, performance modeling
+4. Looksy — LangChain AI search agent using Tavily API (live web search) + OpenAI GPT-3.5 (summarization). ReAct pattern agent deployed with Flask on Render. Live at looksy-ogu9.onrender.com. GitHub: github.com/gurusaichittoji7/Looksy
+5. Nova — RAG-powered document Q&A app. Upload PDF/Word, ask questions in plain English, get answers grounded in the doc. Stack: LangChain, FAISS, OpenAI GPT-3.5, AWS Lambda (serverless), AWS S3, Flask. Live at AWS API Gateway. GitHub: github.com/gurusaichittoji7/Nova
 
 AVAILABILITY: Actively seeking full-time ML/AI/Full-Stack roles at AI startups and global organizations. Open to remote and contract work.`;
 
