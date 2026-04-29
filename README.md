@@ -4,7 +4,7 @@ An interactive personal portfolio with an embedded AI assistant
 that answers questions about my resume in real time.
 
 ## Live Demo
-https://gurusaichittoji7.github.io/Ai-Powered-Portfolio/
+https://gurusaichittoji7.github.io/Portfolio/
 
 ## Features
 - Full scrollable single-page portfolio
