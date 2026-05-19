@@ -21,5 +21,4 @@ https://gurusaichittoji7.github.io/Portfolio/
 
 ## Contact
 - Email: gurusaic3x@gmail.com
-- LinkedIn: https://www.linkedin.com/in/gurusai-chittoji-73a5a822a/
-- GitHub: github.com/gurusaichittoji7
+- LinkedIn: https://www.linkedin.com/in/gurusai-chittoji/
