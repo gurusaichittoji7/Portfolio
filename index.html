@@ -656,152 +656,96 @@
 <!-- ── PROJECTS ── -->
 <section id="projects" style="background:var(--bg2)">
   <div class="section fade">
-    <h2 class="section-title">Projects</h2>
+    <h2 class="section-title">Featured Projects</h2>
+    <p style="text-align:center;color:var(--muted);font-size:14px;margin-top:-32px;margin-bottom:40px;">A few highlights — click any card or browse all projects</p>
     <div class="proj-grid">
 
-      <div class="proj-card fade">
-        <div class="proj-num">Project 01</div>
+      <div class="proj-card fade" onclick="window.location.href='projects.html'" style="cursor:pointer">
+        <div class="proj-num">Featured</div>
+        <div class="proj-name">MediQuery RAG — Clinical AI Assistant</div>
+        <div class="proj-desc">Hospital-grade clinical AI assistant powered by real medical data. RAG pipeline with FAISS, ICD-11 mapping, emergency triage guardrails, and real-time admin dashboard.</div>
+        <div class="proj-stack">
+          <span class="proj-tag">FastAPI</span>
+          <span class="proj-tag">LangChain</span>
+          <span class="proj-tag">FAISS</span>
+          <span class="proj-tag">React</span>
+          <span class="proj-tag">Groq</span>
+        </div>
+        <div class="proj-links">
+          <a class="proj-link gh" href="https://github.com/gurusaichittoji7/MediQuery-RAG" target="_blank" onclick="event.stopPropagation()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            GitHub
+          </a>
+          <a class="proj-link demo" href="https://medi-query-rag.vercel.app" target="_blank" onclick="event.stopPropagation()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Live Demo
+          </a>
+        </div>
+      </div>
+
+      <div class="proj-card fade" onclick="window.location.href='projects.html'" style="cursor:pointer">
+        <div class="proj-num">Featured</div>
         <div class="proj-name">Carvia — The Resume That Gets You Hired</div>
-        <div class="proj-desc">AI-powered resume tailoring and cover letter generation. Paste any job description and get an ATS-ready resume in seconds. Claude AI rewrites your resume to match the role, generates personalized cover letters, and offers 5 professional templates with PDF download.</div>
+        <div class="proj-desc">AI-powered resume tailoring and cover letter generation. Paste any job description and get an ATS-ready resume in seconds with 5 professional templates.</div>
         <div class="proj-stack">
           <span class="proj-tag">React</span>
           <span class="proj-tag">FastAPI</span>
           <span class="proj-tag">Claude API</span>
           <span class="proj-tag">Supabase</span>
-          <span class="proj-tag">Tailwind CSS</span>
-          <span class="proj-tag">Netlify</span>
+          <span class="proj-tag">Tailwind</span>
         </div>
         <div class="proj-links">
-          <a class="proj-link gh" href="https://github.com/gurusaichittoji7/carvia" target="_blank">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          <a class="proj-link gh" href="https://github.com/gurusaichittoji7/carvia" target="_blank" onclick="event.stopPropagation()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
             GitHub
           </a>
-          <a class="proj-link demo" href="https://carvia.work" target="_blank">
+          <a class="proj-link demo" href="https://carvia.work" target="_blank" onclick="event.stopPropagation()">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
             Live Demo
           </a>
         </div>
       </div>
 
-      <!-- ── NEW: LOOKSY ── -->
-      <div class="proj-card fade">
-        <div class="proj-num">Project 02</div>
-        <div class="proj-name">Looksy</div>
-        <div class="proj-desc">A LangChain-powered AI search agent that searches the live web using Tavily API and summarizes results with OpenAI GPT-3.5. Uses the ReAct pattern — the agent autonomously decides what to search, retrieves results, and returns a smart, up-to-date answer. Deployed end-to-end with Flask on Render.</div>
+      <div class="proj-card fade" onclick="window.location.href='projects.html'" style="cursor:pointer">
+        <div class="proj-num">Featured</div>
+        <div class="proj-name">Looksy — AI Search Agent</div>
+        <div class="proj-desc">Intelligent search agent that finds job listings and tech news across the web using LangChain and Tavily API, with a clean Flask UI and three search modes.</div>
         <div class="proj-stack">
+          <span class="proj-tag">Python</span>
+          <span class="proj-tag">Flask</span>
           <span class="proj-tag">LangChain</span>
-          <span class="proj-tag">OpenAI GPT-3.5</span>
           <span class="proj-tag">Tavily API</span>
-          <span class="proj-tag">Flask</span>
-          <span class="proj-tag">Render</span>
-          <span class="proj-tag">Python</span>
         </div>
         <div class="proj-links">
-          <a class="proj-link gh" href="https://github.com/gurusaichittoji7/Looksy" target="_blank">
+          <a class="proj-link gh" href="https://github.com/gurusaichittoji7/Looksy" target="_blank" onclick="event.stopPropagation()">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
             GitHub
           </a>
-          <a class="proj-link demo" href="https://looksy-ogu9.onrender.com/" target="_blank">
+          <a class="proj-link demo" href="https://looksy-ogu9.onrender.com/" target="_blank" onclick="event.stopPropagation()">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
             Live Demo
           </a>
         </div>
       </div>
 
-      <!-- ── NEW: NOVA ── -->
-      <div class="proj-card fade">
-        <div class="proj-num">Project 03</div>
-        <div class="proj-name">Nova</div>
-        <div class="proj-desc">A RAG-powered document Q&amp;A app — upload any PDF or Word file, ask questions in plain English, and get accurate answers grounded in your document. Built with LangChain, FAISS vector embeddings, and OpenAI GPT-3.5. Deployed serverlessly on AWS Lambda with S3 for document storage.</div>
-        <div class="proj-stack">
-          <span class="proj-tag">LangChain</span>
-          <span class="proj-tag">RAG</span>
-          <span class="proj-tag">FAISS</span>
-          <span class="proj-tag">OpenAI GPT-3.5</span>
-          <span class="proj-tag">AWS Lambda</span>
-          <span class="proj-tag">AWS S3</span>
-          <span class="proj-tag">Flask</span>
-        </div>
-        <div class="proj-links">
-          <a class="proj-link gh" href="https://github.com/gurusaichittoji7/Nova" target="_blank">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-            GitHub
-          </a>
-          <a class="proj-link demo" href="https://xryhe591d7.execute-api.us-east-1.amazonaws.com/dev" target="_blank">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            Live Demo
-          </a>
-        </div>
-      </div>
-      
-<div class="proj-card fade">
-        <div class="proj-num">Project 04</div>
-        <div class="proj-name">Semantic Router &amp; Inference Optimizer</div>
-        <div class="proj-desc">Intelligent middleware traffic controller that checks a vector database for semantic cache matches (sub-10ms) and dynamically routes low-complexity queries to lightweight models — reserving GPT-4o only for advanced tasks. Significantly slashes enterprise API costs.</div>
-        <div class="proj-stack">
-          <span class="proj-tag">Python</span>
-          <span class="proj-tag">FastAPI</span>
-          <span class="proj-tag">Pinecone</span>
-          <span class="proj-tag">OpenAI</span>
-          <span class="proj-tag">Pydantic</span>
-        </div>
-        <div class="proj-links">
-          <a class="proj-link gh" href="https://github.com/gurusaichittoji7/semantic-router-cache" target="_blank">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-            GitHub
-          </a>
-        </div>
-      </div>
-
-      <div class="proj-card fade">
-        <div class="proj-num">Project 05</div>
-        <div class="proj-name">Multi-Agent Research Engine</div>
-        <div class="proj-desc">Stateful multi-agent system using LangGraph with strict execution nodes (Planner → Researcher → Writer) and a Human-in-the-Loop checkpoint. Pauses for human validation before executing expensive web searches — solving the "black box" problem of AI workflows.</div>
-        <div class="proj-stack">
-          <span class="proj-tag">Python</span>
-          <span class="proj-tag">LangGraph</span>
-          <span class="proj-tag">Streamlit</span>
-          <span class="proj-tag">Tavily API</span>
-          <span class="proj-tag">GPT-4o</span>
-        </div>
-        <div class="proj-links">
-          <a class="proj-link gh" href="https://github.com/gurusaichittoji7/Multi-Agent-Researcher" target="_blank">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-            GitHub
-          </a>
-        </div>
-      </div>
-
-      <div class="proj-card fade">
-        <div class="proj-num">Project 06</div>
-        <div class="proj-name">Interactive Agent-Evaluator (AI Fact-Checker)</div>
-        <div class="proj-desc">Full-stack dashboard using DeepEval and an LLM-as-a-Judge pattern. Paste any AI response against a source truth document — the system calculates mathematical hallucination scores and provides plain-English reasoning for compliance audits.</div>
-        <div class="proj-stack">
-          <span class="proj-tag">Python</span>
-          <span class="proj-tag">DeepEval</span>
-          <span class="proj-tag">Streamlit</span>
-          <span class="proj-tag">GPT-4o</span>
-        </div>
-        <div class="proj-links">
-          <a class="proj-link gh" href="https://github.com/gurusaichittoji7/Agent-Evaluator" target="_blank">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-            GitHub
-          </a>
-        </div>
-      </div>
-
-      <div class="proj-card fade">
-        <div class="proj-num">Project 07</div>
-        <div class="proj-name">Employee Attrition Prediction Model</div>
-        <div class="proj-desc">Built and deployed a Python/scikit-learn predictive model achieving 87% accuracy and 0.82 F1 score via Flask API, cutting manual HR analysis time by 60%.</div>
-        <div class="proj-stack">
-          <span class="proj-tag">Python</span>
-          <span class="proj-tag">Scikit-learn</span>
-          <span class="proj-tag">Flask</span>
-          <span class="proj-tag">ML</span>
-        </div>
-      </div>
     </div>
+
+    <!-- VIEW ALL BUTTON -->
+    <div style="text-align:center;margin-top:40px;">
+      <a href="projects.html" style="
+        display:inline-flex;align-items:center;gap:10px;
+        font-family:'Inter',sans-serif;font-size:14px;font-weight:600;
+        color:var(--text);text-decoration:none;
+        border:1px solid rgba(240,120,64,0.4);border-radius:999px;
+        padding:14px 32px;transition:all 0.25s;
+        background:rgba(232,98,42,0.06);
+      " onmouseover="this.style.background='rgba(232,98,42,0.14)';this.style.borderColor='var(--orange)'"
+         onmouseout="this.style.background='rgba(232,98,42,0.06)';this.style.borderColor='rgba(240,120,64,0.4)'">
+        View All Projects
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
   </div>
 </section>
 
