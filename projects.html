@@ -112,40 +112,44 @@
       transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
       position: relative; overflow: hidden;
     }
-
-/* Screenshot preview */
-    .proj-preview {
-      width: 100%; height: 200px;
-      overflow: hidden;
-      border-radius: 18px 18px 0 0;
-      position: relative;
-      background: var(--card2);
-    }
-    .proj-preview img {
-      width: 100%;
-      transition: transform 6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      transform: translateY(0);
-      display: block;
-    }
-    .proj-preview:hover img {
-      transform: translateY(calc(-100% + 200px));
-    }
-    .proj-preview-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to bottom, transparent 60%, rgba(26,16,8,0.6) 100%);
-      pointer-events: none;
-    }
-
+    .proj-card:hover { border-color: var(--border2); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
+    .proj-card:hover::before { transform: scaleX(1); }
+    .proj-card.featured { border-color: rgba(232,98,42,0.2); background: linear-gradient(135deg, var(--card), var(--card2)); }
     .proj-card::before {
       content: '';
       position: absolute; top:0; left:0; right:0; height: 2px;
       background: linear-gradient(90deg, var(--orange), var(--orange2));
       transform: scaleX(0); transform-origin: left;
       transition: transform 0.35s ease;
+      z-index: 1;
     }
-    .proj-card:hover { border-color: var(--border2); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
-    .proj-card:hover::before { transform: scaleX(1); }
-    .proj-card.featured { border-color: rgba(232,98,42,0.2); background: linear-gradient(135deg, var(--card), var(--card2)); }
+
+    /* Screenshot scroll preview */
+    .proj-preview {
+      width: 100%; height: 200px;
+      overflow: hidden;
+      border-radius: 18px 18px 0 0;
+      position: relative;
+      background: var(--card2);
+      flex-shrink: 0;
+    }
+    .proj-preview img {
+      width: 100%; display: block;
+      transform: translateY(0);
+      transition: transform 6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .proj-card:hover .proj-preview img {
+      transform: translateY(calc(-100% + 200px));
+    }
+    .proj-preview-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, transparent 60%, rgba(26,16,8,0.5) 100%);
+      pointer-events: none;
+    }
+    .proj-body {
+      padding: 28px;
+      display: flex; flex-direction: column; flex: 1;
+    }
 
     .card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; }
     .proj-badge {
@@ -234,16 +238,16 @@
   <div class="proj-grid" id="projGrid">
 
     <div class="proj-card featured fade" data-cat="agent fullstack">
-      <div class="card-top">
+      <div class="proj-preview">
         <img src="screenshots/mediquery.png" alt="MediQuery RAG"/>
         <div class="proj-preview-overlay"></div>
       </div>
-      <div style="padding:28px; display:flex; flex-direction:column; flex:1">
+      <div class="proj-body">
       <div class="card-top">
         <span class="proj-badge featured">⭐ Featured</span>
         <span class="proj-badge agent">AI Agent</span>
       </div>
-      <div class="proj-name">MediQuery RAG — Clinical AI Assistant</div>
+      <div class="proj-name">MediQuery RAG
       <div class="proj-desc">Hospital-grade clinical AI assistant powered by real medical data. Features emergency triage guardrails, ICD-11 mapping, drug safety layer, RAG pipeline with FAISS over 300+ documents, and real-time admin dashboard.</div>
       <div class="proj-stack">
         <span class="proj-tag">FastAPI</span>
@@ -267,11 +271,16 @@
     </div>
 
     <div class="proj-card featured fade" data-cat="fullstack">
+      <div class="proj-preview">
+        <img src="screenshots/carvia.png" alt="Carvia"/>
+        <div class="proj-preview-overlay"></div>
+      </div>
+      <div class="proj-body">
       <div class="card-top">
         <span class="proj-badge featured">⭐ Featured</span>
         <span class="proj-badge fullstack">Full-Stack</span>
       </div>
-      <div class="proj-name">Carvia — The Resume That Gets You Hired</div>
+      <div class="proj-name">Carvia
       <div class="proj-desc">AI-powered resume tailoring and cover letter generation. Paste any job description and get an ATS-ready resume in seconds. Features 5 professional templates, PDF download, and persistent dashboard.</div>
       <div class="proj-stack">
         <span class="proj-tag">React + Vite</span>
@@ -294,11 +303,16 @@
     </div>
 
     <div class="proj-card featured fade" data-cat="tool agent">
+      <div class="proj-preview">
+        <img src="screenshots/chronos.png" alt="Chronos"/>
+        <div class="proj-preview-overlay"></div>
+      </div>
+      <div class="proj-body">
       <div class="card-top">
         <span class="proj-badge featured">⭐ Featured</span>
         <span class="proj-badge tool">Dev Tool</span>
       </div>
-      <div class="proj-name">Chronos — Agent Flight Recorder</div>
+      <div class="proj-name">Chronos
       <div class="proj-desc">Time-travel debugger for LangChain and LangGraph workflows. Intercepts every LLM call, tool invocation, and node transition — visualizes it as an interactive graph. Click any past step, edit the output, and resume execution from that exact point.</div>
       <div class="proj-stack">
         <span class="proj-tag">FastAPI</span>
@@ -322,8 +336,13 @@
     </div>
 
     <div class="proj-card fade" data-cat="agent">
+      <div class="proj-preview">
+        <img src="screenshots/looksy.png" alt="Looksy"/>
+        <div class="proj-preview-overlay"></div>
+      </div>
+      <div class="proj-body">
       <div class="card-top"><span class="proj-badge agent">AI Agent</span></div>
-      <div class="proj-name">Looksy — AI Search Agent</div>
+      <div class="proj-name">Looksy
       <div class="proj-desc">Intelligent search agent that finds job listings and tech news across the web. Three search modes: jobs, news, and combined — powered by LangChain and Tavily API with a clean Flask UI.</div>
       <div class="proj-stack">
         <span class="proj-tag">Python</span>
