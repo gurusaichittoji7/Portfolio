@@ -107,11 +107,35 @@
     .proj-card {
       background: var(--card);
       border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 18px; padding: 28px;
+      border-radius: 18px;
       display: flex; flex-direction: column;
       transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
       position: relative; overflow: hidden;
     }
+
+/* Screenshot preview */
+    .proj-preview {
+      width: 100%; height: 200px;
+      overflow: hidden;
+      border-radius: 18px 18px 0 0;
+      position: relative;
+      background: var(--card2);
+    }
+    .proj-preview img {
+      width: 100%;
+      transition: transform 6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transform: translateY(0);
+      display: block;
+    }
+    .proj-preview:hover img {
+      transform: translateY(calc(-100% + 200px));
+    }
+    .proj-preview-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, transparent 60%, rgba(26,16,8,0.6) 100%);
+      pointer-events: none;
+    }
+
     .proj-card::before {
       content: '';
       position: absolute; top:0; left:0; right:0; height: 2px;
@@ -210,6 +234,11 @@
   <div class="proj-grid" id="projGrid">
 
     <div class="proj-card featured fade" data-cat="agent fullstack">
+      <div class="card-top">
+        <img src="screenshots/mediquery.png" alt="MediQuery RAG"/>
+        <div class="proj-preview-overlay"></div>
+      </div>
+      <div style="padding:28px; display:flex; flex-direction:column; flex:1">
       <div class="card-top">
         <span class="proj-badge featured">⭐ Featured</span>
         <span class="proj-badge agent">AI Agent</span>
