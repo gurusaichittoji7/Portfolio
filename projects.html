@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Projects — Gurusai Chittoji</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg:      #1a1008;
+      --bg2:     #221508;
+      --card:    #2a1c0e;
+      --card2:   #321f0f;
+      --orange:  #e8622a;
+      --orange2: #f07840;
+      --text:    #f0e8dc;
+      --muted:   #a89070;
+      --dim:     #6b5540;
+      --border:  rgba(232,98,42,0.18);
+      --border2: rgba(232,98,42,0.32);
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .nav-wrap {
+      position: sticky; top:0; z-index:200;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 16px 60px;
+      background: rgba(26,16,8,0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-weight: 800; font-size: 18px; color: #fff;
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--orange); }
+    .nav-back {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 500; color: var(--muted);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--orange); }
+
+    .page-header {
+      max-width: 1100px; margin: 0 auto;
+      padding: 70px 60px 50px;
+    }
+    .page-header-tag {
+      font-size: 11px; font-weight: 600; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--orange);
+      display: block; margin-bottom: 12px;
+    }
+    .page-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 800; font-size: clamp(36px, 5vw, 60px);
+      line-height: 1.05; letter-spacing: -1.5px; color: #fff;
+      margin-bottom: 16px;
+    }
+    .page-header p {
+      font-size: 15px; color: var(--muted);
+      max-width: 520px; line-height: 1.75;
+    }
+    .proj-count {
+      display: inline-flex; align-items: center; gap: 8px;
+      margin-top: 24px; font-size: 13px; font-weight: 600;
+      color: var(--orange); background: rgba(232,98,42,0.1);
+      border: 1px solid var(--border2);
+      border-radius: 999px; padding: 6px 16px;
+    }
+
+    .filter-wrap {
+      max-width: 1100px; margin: 0 auto;
+      padding: 0 60px 40px;
+      display: flex; gap: 8px; flex-wrap: wrap;
+    }
+    .filter-btn {
+      font-size: 12px; font-weight: 500;
+      color: var(--muted); background: var(--card);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 999px; padding: 7px 18px;
+      cursor: pointer; transition: all 0.2s;
+    }
+    .filter-btn:hover { color: var(--text); border-color: var(--border2); }
+    .filter-btn.active { background: var(--orange); border-color: var(--orange); color: #fff; }
+
+    .projects-wrap {
+      max-width: 1100px; margin: 0 auto;
+      padding: 0 60px 80px;
+    }
+    .proj-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+
+    .proj-card {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 18px; padding: 28px;
+      display: flex; flex-direction: column;
+      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+      position: relative; overflow: hidden;
+    }
+    .proj-card::before {
+      content: '';
+      position: absolute; top:0; left:0; right:0; height: 2px;
+      background: linear-gradient(90deg, var(--orange), var(--orange2));
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.35s ease;
+    }
+    .proj-card:hover { border-color: var(--border2); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
+    .proj-card:hover::before { transform: scaleX(1); }
+    .proj-card.featured { border-color: rgba(232,98,42,0.2); background: linear-gradient(135deg, var(--card), var(--card2)); }
+
+    .card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; }
+    .proj-badge {
+      font-size: 10px; font-weight: 600; letter-spacing: 2px;
+      text-transform: uppercase; padding: 4px 10px; border-radius: 999px;
+    }
+    .proj-badge.featured { color: var(--orange); background: rgba(232,98,42,0.12); border: 1px solid var(--border2); }
+    .proj-badge.agent    { color: #a78bfa; background: rgba(167,139,250,0.1); border: 1px solid rgba(167,139,250,0.25); }
+    .proj-badge.fullstack{ color: #34d399; background: rgba(52,211,153,0.1); border: 1px solid rgba(52,211,153,0.25); }
+    .proj-badge.ml       { color: #60a5fa; background: rgba(96,165,250,0.1); border: 1px solid rgba(96,165,250,0.25); }
+    .proj-badge.tool     { color: #f472b6; background: rgba(244,114,182,0.1); border: 1px solid rgba(244,114,182,0.25); }
+
+    .proj-name {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700; font-size: 19px;
+      color: var(--text); margin-bottom: 10px; line-height: 1.3;
+    }
+    .proj-desc { font-size: 13px; color: var(--muted); line-height: 1.75; margin-bottom: 18px; flex: 1; }
+    .proj-stack { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
+    .proj-tag {
+      font-size: 11px; font-weight: 500; color: var(--muted);
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 999px; padding: 3px 10px;
+    }
+    .proj-links { display: flex; gap: 8px; flex-wrap: wrap; margin-top: auto; }
+    .proj-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12px; font-weight: 600; text-decoration: none;
+      padding: 6px 14px; border-radius: 999px; transition: all 0.2s;
+    }
+    .proj-link.gh    { color: var(--muted); border: 1px solid rgba(255,255,255,0.12); }
+    .proj-link.gh:hover { color: var(--text); border-color: rgba(255,255,255,0.3); }
+    .proj-link.demo  { color: #fff; background: var(--orange); }
+    .proj-link.demo:hover { background: var(--orange2); box-shadow: 0 0 18px rgba(232,98,42,0.4); }
+
+    footer {
+      text-align: center; padding: 30px;
+      font-size: 13px; color: var(--dim);
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    footer span { color: var(--orange); }
+
+    .fade { opacity:0; transform:translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade.in { opacity:1; transform:translateY(0); }
+    .proj-card.hidden { display: none; }
+
+    @media(max-width:860px) {
+      .nav-wrap { padding: 14px 20px; }
+      .page-header { padding: 50px 20px 30px; }
+      .filter-wrap { padding: 0 20px 30px; }
+      .projects-wrap { padding: 0 20px 60px; }
+      .proj-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="nav-wrap">
+  <a class="nav-logo" href="index.html">G<span>.</span>Chittoji</a>
+  <a class="nav-back" href="index.html">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Back to Portfolio
+  </a>
+</div>
+
+<div class="page-header fade">
+  <span class="page-header-tag">// All Projects</span>
+  <h1>Things I've<br/>Built</h1>
+  <p>A collection of AI systems, full-stack applications, and ML tools — from production RAG pipelines to agentic workflows.</p>
+  <div class="proj-count">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+    10 Projects
+  </div>
+</div>
+
+<div class="filter-wrap fade">
+  <button class="filter-btn active" onclick="filterProjects('all', this)">All</button>
+  <button class="filter-btn" onclick="filterProjects('agent', this)">AI Agents</button>
+  <button class="filter-btn" onclick="filterProjects('fullstack', this)">Full-Stack</button>
+  <button class="filter-btn" onclick="filterProjects('ml', this)">ML Models</button>
+  <button class="filter-btn" onclick="filterProjects('tool', this)">Dev Tools</button>
+</div>
+
+<div class="projects-wrap">
+  <div class="proj-grid" id="projGrid">
+
+    <div class="proj-card featured fade" data-cat="agent fullstack">
+      <div class="card-top">
+        <span class="proj-badge featured">⭐ Featured</span>
+        <span class="proj-badge agent">AI Agent</span>
+      </div>
+      <div class="proj-name">MediQuery RAG — Clinical AI Assistant</div>
+      <div class="proj-desc">Hospital-grade clinical AI assistant powered by real medical data. Features emergency triage guardrails, ICD-11 mapping, drug safety layer, RAG pipeline with FAISS over 300+ documents, and real-time admin dashboard.</div>
+      <div class="proj-stack">
+        <span class="proj-tag">FastAPI</span>
+        <span class="proj-tag">LangChain</span>
+        <span class="proj-tag">FAISS</span>
+        <span class="proj-tag">React + Vite</span>
+        <span class="proj-tag">Groq</span>
+        <span class="proj-tag">Firebase</span>
+        <span class="proj-tag">Docker</span>
+      </div>
+      <div class="proj-links">
+        <a class="proj-link gh" href="https://github.com/gurusaichittoji7/MediQuery-RAG" target="_blank">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </a>
+        <a class="proj-link demo" href="https://medi-query-rag.vercel.app" target="_blank">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Live Demo
+        </a>
+      </div>
+    </div>
+
+    <div class="proj-card featured fade" data-cat="fullstack">
+      <div class="card-top">
+        <span class="proj-badge featured">⭐ Featured</span>
+        <span class="proj-badge fullstack">Full-Stack</span>
+      </div>
+      <div class="proj-name">Carvia — The Resume That Gets You Hired</div>
+      <div class="proj-desc">AI-powered resume tailoring and cover letter generation. Paste any job description and get an ATS-ready resume in seconds. Features 5 professional templates, PDF download, and persistent dashboard.</div>
+      <div class="proj-stack">
+        <span class="proj-tag">React + Vite</span>
+        <span class="proj-tag">FastAPI</span>
+        <span class="proj-tag">Claude API</span>
+        <span class="proj-tag">Supabase</span>
+        <span class="proj-tag">Tailwind CSS</span>
+        <span class="proj-tag">Netlify</span>
+      </div>
+      <div class="proj-links">
+        <a class="proj-link gh" href="https://github.com/gurusaichittoji7/carvia" target="_blank">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </a>
+        <a class="proj-link demo" href="https://carvia.work" target="_blank">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Live Demo
+        </a>
+      </div>
+    </div>
+
+    <div class="proj-card featured fade" data-cat="tool agent">
+      <div class="card-top">
+        <span class="proj-badge featured">⭐ Featured</span>
+        <span class="proj-badge tool">Dev Tool</span>
+      </div>
+      <div class="proj-name">Chronos — Agent Flight Recorder</div>
+      <div class="proj-desc">Time-travel debugger for LangChain and LangGraph workflows. Intercepts every LLM call, tool invocation, and node transition — visualizes it as an interactive graph. Click any past step, edit the output, and resume execution from that exact point.</div>
+      <div class="proj-stack">
+        <span class="proj-tag">FastAPI</span>
+        <span class="proj-tag">LangChain</span>
+        <span class="proj-tag">LangGraph</span>
+        <span class="proj-tag">React Flow</span>
+        <span class="proj-tag">SQLite</span>
+        <span class="proj-tag">Docker</span>
+        <span class="proj-tag">AWS Lightsail</span>
+      </div>
+      <div class="proj-links">
+        <a class="proj-link gh" href="https://github.com/gurusaichittoji7/Chronos" target="_blank">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </a>
+        <a class="proj-link demo" href="http://3.145.47.206:5173" target="_blank">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Live Demo
+        </a>
+      </div>
+    </div>
+
+    <div class="proj-card fade" data-cat="agent">
+      <div class="card-top"><span class="proj-badge agent">AI Agent</span></div>
+      <div class="proj-name">Looksy — AI Search Agent</div>
+      <div class="proj-desc">Intelligent search agent that finds job listings and tech news across the web. Three search modes: jobs, news, and combined — powered by LangChain and Tavily API with a clean Flask UI.</div>
+      <div class="proj-stack">
+        <span class="proj-tag">Python</span>
+        <span class="proj-tag">Flask</span>
+        <span class="proj-tag">LangChain</span>
+        <span class="proj-tag">Tavily API</span>
+      </div>
+      <div class="proj-links">
+        <a class="proj-link gh" href="https://github.com/gurusaichittoji7/Looksy" target="_blank">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </a>
+        <a class="proj-link demo" href="https://looksy-ogu9.onrender.com/" target="_blank">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Live Demo
+        </a>
+      </div>
+    </div>
+
+    <div class="proj-card fade" data-cat="agent tool">
+      <div class="card-top"><span class="proj-badge tool">Dev Tool</span></div>
+      <div class="proj-name">Semantic Router &amp; Inference Optimizer</div>
+      <div class="proj-desc">Intelligent middleware with sub-10ms semantic cache matching via vector database. Dynamically routes low-complexity queries to lightweight models, reserving GPT-4o only for advanced tasks — slashing enterprise API costs.</div>
+      <div class="proj-stack">
+        <span class="proj-tag">Python</span>
+        <span class="proj-tag">FastAPI</span>
+        <span class="proj-tag">Pinecone</span>
+        <span class="proj-tag">OpenAI</span>
+        <span class="proj-tag">Pydantic</span>
+      </div>
+      <div class="proj-links">
+        <a class="proj-link gh" href="https://github.com/gurusaichittoji7/semantic-router-cache" target="_blank">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+
+    <div class="proj-card fade" data-cat="agent">
+      <div class="card-top"><span class="proj-badge agent">AI Agent</span></div>
+      <div class="proj-name">Multi-Agent Research Engine</div>
+      <div class="proj-desc">Stateful multi-agent system using LangGraph with Planner → Researcher → Writer execution nodes and Human-in-the-Loop checkpoint. Pauses for human validation before expensive web searches.</div>
+      <div class="proj-stack">
+        <span class="proj-tag">Python</span>
+        <span class="proj-tag">LangGraph</span>
+        <span class="proj-tag">Streamlit</span>
+        <span class="proj-tag">Tavily API</span>
+        <span class="proj-tag">GPT-4o</span>
+      </div>
+      <div class="proj-links">
+        <a class="proj-link gh" href="https://github.com/gurusaichittoji7/Multi-Agent-Researcher" target="_blank">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+
+    <div class="proj-card fade" data-cat="tool">
+      <div class="card-top"><span class="proj-badge tool">Dev Tool</span></div>
+      <div class="proj-name">Interactive Agent-Evaluator (AI Fact-Checker)</div>
+      <div class="proj-desc">Full-stack dashboard using DeepEval and LLM-as-a-Judge. Paste any AI response against a source truth document — calculates mathematical hallucination scores with plain-English reasoning for compliance audits.</div>
+      <div class="proj-stack">
+        <span class="proj-tag">Python</span>
+        <span class="proj-tag">DeepEval</span>
+        <span class="proj-tag">Streamlit</span>
+        <span class="proj-tag">GPT-4o</span>
+      </div>
+      <div class="proj-links">
+        <a class="proj-link gh" href="https://github.com/gurusaichittoji7/Agent-Evaluator" target="_blank">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+
+    <div class="proj-card fade" data-cat="ml">
+      <div class="card-top"><span class="proj-badge ml">ML Model</span></div>
+      <div class="proj-name">Employee Attrition Prediction Model</div>
+      <div class="proj-desc">Python/scikit-learn predictive model achieving 87% accuracy and 0.82 F1 score deployed via Flask API. Reduced manual HR analysis time by 60% through automated attrition risk scoring.</div>
+      <div class="proj-stack">
+        <span class="proj-tag">Python</span>
+        <span class="proj-tag">Scikit-learn</span>
+        <span class="proj-tag">Flask</span>
+        <span class="proj-tag">ML</span>
+      </div>
+    </div>
+
+    <div class="proj-card fade" data-cat="ml">
+      <div class="card-top"><span class="proj-badge ml">ML Model</span></div>
+      <div class="proj-name">Electric Vehicle Modeling &amp; Analysis</div>
+      <div class="proj-desc">Designed an electric vehicle model to enhance energy efficiency, reduce emissions, and improve performance while lowering maintenance costs compared to conventional vehicles.</div>
+      <div class="proj-stack">
+        <span class="proj-tag">Python</span>
+        <span class="proj-tag">Data Analysis</span>
+        <span class="proj-tag">Modeling</span>
+      </div>
+    </div>
+
+    <div class="proj-card fade" data-cat="fullstack">
+      <div class="card-top"><span class="proj-badge fullstack">Full-Stack</span></div>
+      <div class="proj-name">AI-Powered Portfolio</div>
+      <div class="proj-desc">This portfolio website — a full scrollable single-page site with an embedded AI chat assistant powered by Claude API that answers questions about my resume in real time.</div>
+      <div class="proj-stack">
+        <span class="proj-tag">HTML/CSS/JS</span>
+        <span class="proj-tag">Claude API</span>
+        <span class="proj-tag">GitHub Pages</span>
+      </div>
+      <div class="proj-links">
+        <a class="proj-link gh" href="https://github.com/gurusaichittoji7/Portfolio" target="_blank">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </a>
+        <a class="proj-link demo" href="https://gurusaichittoji7.github.io/Portfolio/" target="_blank">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Live Demo
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  © 2025 <span>Gurusai Chittoji</span> &nbsp;·&nbsp;
+  <a href="index.html" style="color:var(--orange);text-decoration:none;">← Back to Portfolio</a>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade').forEach((el, i) => {
+  el.style.transitionDelay = (i % 4) * 0.07 + 's';
+  obs.observe(el);
+});
+
+function filterProjects(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.proj-card').forEach(card => {
+    const cats = card.dataset.cat || '';
+    if (cat === 'all' || cats.includes(cat)) {
+      card.classList.remove('hidden');
+    } else {
+      card.classList.add('hidden');
+    }
+  });
+}
+</script>
+</body>
+</html>
