@@ -108,33 +108,51 @@
     .hlink:hover svg { opacity: 1; }
 
     /* PHOTO */
-    .photo-col { flex-shrink: 0; }
-    .photo-ring {
-      width: 280px; height: 280px;
-      border-radius: 50%;
+.photo-ring {
+      width: 100%;
+      max-width: 420px;
+      aspect-ratio: 4/5;
+      border-radius: 20px;
       border: 3px solid var(--orange);
-      padding: 4px;
+      padding: 0;
       background: var(--card);
       box-shadow: 0 0 60px rgba(232,98,42,0.18);
       overflow: hidden;
       position: relative;
     }
-    .photo-ring img {
+    .photo-ring video {
       width: 100%; height: 100%;
-      border-radius: 50%; object-fit: cover;
+      object-fit: cover;
+      border-radius: 0;
+      display: block;
     }
-    .photo-placeholder {
-      width: 100%; height: 100%;
+    .mute-btn {
+      position: absolute;
+      top: 16px; right: 16px;
+      width: 40px; height: 40px;
       border-radius: 50%;
-      background: var(--card2);
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      gap: 10px; color: var(--dim);
-      font-size: 12px; font-weight: 500;
-      letter-spacing: 0.5px; text-align: center;
-      padding: 20px;
+      background: rgba(26,16,8,0.7);
+      border: 1px solid rgba(255,255,255,0.2);
+      backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      z-index: 5;
     }
-    .photo-placeholder svg { opacity: 0.35; }
+    .mute-btn:hover { background: rgba(232,98,42,0.3); border-color: var(--orange); }
+    .video-name-tag {
+      position: absolute;
+      bottom: 16px; left: 16px;
+      background: rgba(26,16,8,0.75);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-size: 13px; font-weight: 600;
+      color: #fff;
+      z-index: 5;
+    }
+    .video-name-tag span { color: var(--orange); }
 
     /* ── SECTION WRAPPER ── */
     .section { max-width: 1100px; margin: 0 auto; padding: 70px 60px; }
@@ -481,7 +499,7 @@
     @media(max-width: 860px) {
       #home { grid-template-columns: 1fr; padding: 50px 24px 60px; text-align: center; gap: 36px; }
       .photo-col { display: flex; justify-content: center; order: -1; }
-      .photo-ring { width: 200px; height: 200px; }
+      .photo-ring { width: 100%; max-width: 320px; aspect-ratio: 4/5; }
       .hero-links { justify-content: center; }
       .section { padding: 50px 24px; }
       .nav-pill { font-size: 12px; padding: 6px 12px; }
@@ -532,14 +550,17 @@
 
   <div class="photo-col">
     <div class="photo-ring">
-      <img src="Photo.png" alt="Gurusai Chittoji"/>
-        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
-          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-          <circle cx="12" cy="7" r="4"/>
+      <video id="introVid" autoplay loop muted playsinline poster="Photo.png">
+        <source src="intro.mp4" type="video/mp4">
+      </video>
+      <button class="mute-btn" onclick="toggleMute()" id="muteBtn">
+        <svg id="muteIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+          <line x1="23" y1="9" x2="17" y2="15"/>
+          <line x1="17" y1="9" x2="23" y2="15"/>
         </svg>
-        <span>Your Photo Here</span>
-        <span style="font-size:10px;opacity:0.5">Replace with &lt;img&gt; tag</span>
-      </div>
+      </button>
+      <div class="video-name-tag">Gurusai<span>.</span>Chittoji — AI/ML Engineer</div>
     </div>
   </div>
 </section>
@@ -984,6 +1005,16 @@ function addMsg(role, text) {
 }
 function sc() { const m = document.getElementById('cwMsgs'); m.scrollTop = m.scrollHeight; }
 document.getElementById('cinp').addEventListener('keydown', e => { if(e.key === 'Enter') csend(); });
+function toggleMute() {
+  const vid = document.getElementById('introVid');
+  const icon = document.getElementById('muteIcon');
+  vid.muted = !vid.muted;
+  if (vid.muted) {
+    icon.innerHTML = '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>';
+  } else {
+    icon.innerHTML = '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>';
+  }
+}
 </script>
 </body>
 </html>
