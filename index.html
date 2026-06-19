@@ -66,12 +66,47 @@
     .nav-pill.outlined:hover { border-color: var(--orange); color: var(--orange); }
 
     /* ── HERO ── */
-    #home {
-      max-width: 1100px; margin: 0 auto;
-      padding: 80px 60px 100px;
-      display: grid; grid-template-columns: 1fr auto;
-      gap: 60px; align-items: center;
-    }
+#home {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 0 60px;
+  overflow: hidden;
+}
+.hero-bg-video {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+.hero-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, rgba(26,16,8,0.95) 0%, rgba(26,16,8,0.75) 40%, rgba(26,16,8,0.35) 100%);
+  z-index: 1;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 650px;
+}
+.hero-mute-btn {
+  position: absolute;
+  bottom: 30px; right: 30px;
+  z-index: 2;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: rgba(26,16,8,0.7);
+  border: 1px solid rgba(255,255,255,0.2);
+  backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.hero-mute-btn:hover { background: rgba(232,98,42,0.3); border-color: var(--orange); }
     .hero-name {
       font-family: 'Playfair Display', serif;
       font-weight: 800;
@@ -108,51 +143,12 @@
     .hlink:hover svg { opacity: 1; }
 
     /* PHOTO */
-.photo-ring {
-      width: 100%;
-      max-width: 420px;
-      aspect-ratio: 4/5;
-      border-radius: 20px;
-      border: 3px solid var(--orange);
-      padding: 0;
-      background: var(--card);
-      box-shadow: 0 0 60px rgba(232,98,42,0.18);
-      overflow: hidden;
-      position: relative;
-    }
     .photo-ring video {
       width: 100%; height: 100%;
       object-fit: cover;
       border-radius: 0;
       display: block;
     }
-    .mute-btn {
-      position: absolute;
-      top: 16px; right: 16px;
-      width: 40px; height: 40px;
-      border-radius: 50%;
-      background: rgba(26,16,8,0.7);
-      border: 1px solid rgba(255,255,255,0.2);
-      backdrop-filter: blur(8px);
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer;
-      transition: all 0.2s;
-      z-index: 5;
-    }
-    .mute-btn:hover { background: rgba(232,98,42,0.3); border-color: var(--orange); }
-    .video-name-tag {
-      position: absolute;
-      bottom: 16px; left: 16px;
-      background: rgba(26,16,8,0.75);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 999px;
-      padding: 8px 16px;
-      font-size: 13px; font-weight: 600;
-      color: #fff;
-      z-index: 5;
-    }
-    .video-name-tag span { color: var(--orange); }
 
     /* ── SECTION WRAPPER ── */
     .section { max-width: 1100px; margin: 0 auto; padding: 70px 60px; }
@@ -497,16 +493,15 @@
 
     /* ── RESPONSIVE ── */
     @media(max-width: 860px) {
-      #home { grid-template-columns: 1fr; padding: 50px 24px 60px; text-align: center; gap: 36px; }
-      .photo-col { display: flex; justify-content: center; order: -1; }
-      .photo-ring { width: 100%; max-width: 320px; aspect-ratio: 4/5; }
-      .hero-links { justify-content: center; }
-      .section { padding: 50px 24px; }
-      .nav-pill { font-size: 12px; padding: 6px 12px; }
-      .proj-grid, .skills-grid, .achieve-grid { grid-template-columns: 1fr; }
-      .chat-win { width: calc(100vw - 28px); right: 14px; }
-      .fab { right: 16px; bottom: 16px; }
-    }
+  #home { padding: 0 24px; min-height: 70vh; text-align: center; }
+  .hero-content { max-width: 100%; }
+  .hero-links { justify-content: center; }
+  .section { padding: 50px 24px; }
+  .nav-pill { font-size: 12px; padding: 6px 12px; }
+  .proj-grid, .skills-grid, .achieve-grid { grid-template-columns: 1fr; }
+  .chat-win { width: calc(100vw - 28px); right: 14px; }
+  .fab { right: 16px; bottom: 16px; }
+}
   </style>
 </head>
 <body>
@@ -526,7 +521,12 @@
 
 <!-- ── HERO ── -->
 <section id="home">
-  <div>
+  <video class="hero-bg-video" id="heroVid" autoplay loop muted playsinline>
+    <source src="intro.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
     <h1 class="hero-name">Gurusai<br/>Chittoji</h1>
     <p class="hero-role">ML &amp; AI Engineer &nbsp;•&nbsp; Full-Stack Developer<br/>M.S. Computer Science @ University of Bridgeport</p>
     <p class="hero-bio">
@@ -548,21 +548,13 @@
     </div>
   </div>
 
-  <div class="photo-col">
-    <div class="photo-ring">
-      <video id="introVid" autoplay loop muted playsinline poster="Photo.png">
-        <source src="intro.mp4" type="video/mp4">
-      </video>
-      <button class="mute-btn" onclick="toggleMute()" id="muteBtn">
-        <svg id="muteIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2">
-          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
-          <line x1="23" y1="9" x2="17" y2="15"/>
-          <line x1="17" y1="9" x2="23" y2="15"/>
-        </svg>
-      </button>
-      <div class="video-name-tag">Gurusai<span>.</span>Chittoji — AI/ML Engineer</div>
-    </div>
-  </div>
+  <button class="hero-mute-btn" onclick="toggleHeroMute()" id="heroMuteBtn">
+    <svg id="heroMuteIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+      <line x1="23" y1="9" x2="17" y2="15"/>
+      <line x1="17" y1="9" x2="23" y2="15"/>
+    </svg>
+  </button>
 </section>
 
 <!-- ── EXPERIENCE ── -->
@@ -1005,9 +997,9 @@ function addMsg(role, text) {
 }
 function sc() { const m = document.getElementById('cwMsgs'); m.scrollTop = m.scrollHeight; }
 document.getElementById('cinp').addEventListener('keydown', e => { if(e.key === 'Enter') csend(); });
-function toggleMute() {
-  const vid = document.getElementById('introVid');
-  const icon = document.getElementById('muteIcon');
+function toggleHeroMute() {
+  const vid = document.getElementById('heroVid');
+  const icon = document.getElementById('heroMuteIcon');
   vid.muted = !vid.muted;
   if (vid.muted) {
     icon.innerHTML = '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>';
