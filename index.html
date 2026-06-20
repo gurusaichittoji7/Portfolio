@@ -967,19 +967,14 @@ async function csend() {
   const typ = document.getElementById('ctyp');
   typ.style.display = 'block'; sc();
   try {
-    const r = await fetch('https://api.anthropic.com/v1/messages', {
+    const r = await fetch('https://portfolio-backend-zklj.onrender.com/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
-        system: RESUME,
-        messages: [{ role: 'user', content: q }]
-      })
+      body: JSON.stringify({ message: q })
     });
     const d = await r.json();
     typ.style.display = 'none';
-    addMsg('ai', d.content?.[0]?.text || 'Sorry, no response received.');
+    addMsg('ai', d.reply || d.error || 'Sorry, no response received.');
   } catch(e) {
     typ.style.display = 'none';
     addMsg('ai', 'Connection error. Please check the API setup.');
